@@ -1,1 +1,15 @@
-print('Hello')
+from client.llm_client import LLMClient
+import asyncio
+async def main():
+    client = LLMClient()
+    messages=[
+        {
+            "role": "user",
+            "content": "Whats up?"
+        }
+    ]
+    async for event in client.chat_completion(messages, stream=True):
+        print(event)
+    print("Done")
+    
+asyncio.run(main())
